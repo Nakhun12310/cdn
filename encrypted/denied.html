@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Protected by LunarisX</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #0A0716;
+    --panel-top: #1B1330;
+    --panel-bottom: #140F26;
+    --border: #2E2350;
+    --border-soft: rgba(139,92,246,0.18);
+    --text: #EDEBF7;
+    --text-muted: #9A93B8;
+    --text-dim: #5C5580;
+    --violet: #8B5CF6;
+    --violet-light: #C4B5FD;
+    --red: #E14C4C;
+    --red-bg: rgba(225,76,76,0.10);
+    --red-border: rgba(225,76,76,0.35);
+    --font-display: 'Space Grotesk', sans-serif;
+    --font-body: 'IBM Plex Sans', sans-serif;
+  }
+
+  *{ margin:0; padding:0; box-sizing:border-box; }
+
+  body{
+    background: var(--bg);
+    background-image:
+      radial-gradient(ellipse 900px 600px at 18% 8%, rgba(139,92,246,0.16), transparent 60%),
+      radial-gradient(ellipse 700px 500px at 85% 90%, rgba(196,181,253,0.08), transparent 55%);
+    color: var(--text);
+    font-family: var(--font-body);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    position: relative;
+    overflow-x: hidden;
+  }
+
+  body::before{
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(139,92,246,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(139,92,246,0.03) 1px, transparent 1px);
+    background-size: 44px 44px;
+    mask-image: radial-gradient(ellipse 900px 700px at 30% 20%, black 30%, transparent 75%);
+    pointer-events: none;
+  }
+
+  .card{
+    width: 100%;
+    max-width: 620px;
+    background: linear-gradient(165deg, var(--panel-top), var(--panel-bottom));
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 44px 48px 40px;
+    box-shadow:
+      0 40px 80px -30px rgba(0,0,0,0.7),
+      0 0 0 1px rgba(255,255,255,0.02) inset,
+      0 0 60px -20px rgba(139,92,246,0.15);
+    position: relative;
+  }
+
+  .badge{
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--red-bg);
+    border: 1px solid var(--red-border);
+    color: var(--red);
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    padding: 7px 16px 7px 12px;
+    border-radius: 999px;
+    margin-bottom: 22px;
+  }
+
+  .badge svg{ width: 14px; height: 14px; flex-shrink: 0; }
+
+  h1{
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    margin-bottom: 16px;
+  }
+
+  h1 .accent{
+    background: linear-gradient(100deg, var(--violet-light), var(--violet));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  p{
+    font-size: 15px;
+    line-height: 1.65;
+    color: var(--text-muted);
+    max-width: 480px;
+  }
+
+  p + p{ margin-top: 10px; }
+
+  .divider{
+    height: 1px;
+    background: linear-gradient(90deg, var(--border-soft), transparent 70%);
+    margin: 30px 0 28px;
+  }
+
+  .actions{
+    display: flex;
+  }
+
+  .btn{
+    padding: 13px 26px;
+    border-radius: 10px;
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(135deg, #A78BFA, #7C3AED);
+    color: #100B1E;
+    box-shadow: 0 10px 24px -8px rgba(124,58,237,0.55);
+    transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+  }
+
+  .btn:hover{
+    transform: translateY(-1px);
+    filter: brightness(1.06);
+    box-shadow: 0 14px 30px -8px rgba(124,58,237,0.65);
+  }
+
+  .btn:focus-visible{
+    outline: 2px solid var(--violet-light);
+    outline-offset: 3px;
+  }
+
+  .btn svg{ width: 15px; height: 15px; }
+
+  @media (prefers-reduced-motion: reduce){
+    .btn{ transition: none; }
+  }
+
+  @media (max-width: 520px){
+    .card{ padding: 34px 26px 30px; }
+    h1{ font-size: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="card">
+  <span class="badge">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+      <circle cx="12" cy="12" r="9"/>
+      <line x1="6.5" y1="17.5" x2="17.5" y2="6.5"/>
+    </svg>
+    ACCESS DENIED
+  </span>
+
+  <h1>This script is protected by <span class="accent">LunarisX</span></h1>
+
+  <p>You don't have permission to access these files.</p>
+  <p>This script has been protected against unauthorized access, reverse engineering, and tampering.</p>
+  <p>This script uses Luraph 14.7</p>
+
+  <div class="divider"></div>
+
+  <div class="actions">
+    <a href="https://getlunarisx.win/" class="btn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M19 12H5"/>
+        <path d="M12 19l-7-7 7-7"/>
+      </svg>
+      Return
+    </a>
+  </div>
+</div>
+
+</body>
+</html>
