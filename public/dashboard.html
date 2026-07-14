@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - ScriptVault</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            background: #0f172a;
+            color: #f8fafc;
+            margin: 0;
+            padding: 40px;
+        }
+        .container { max-width: 800px; margin: 0 auto; }
+        textarea {
+            width: 100%;
+            height: 200px;
+            background: #1e293b;
+            color: #e2e8f0;
+            border: 1px solid #334155;
+            border-radius: 6px;
+            padding: 12px;
+            font-family: monospace;
+            box-sizing: border-box;
+            resize: vertical;
+        }
+        button {
+            background: #10b981;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-top: 15px;
+            margin-bottom: 25px;
+        }
+        button:hover { background: #059669; }
+        .output-box {
+            background: #1e293b;
+            border-left: 4px solid #38bdf8;
+            padding: 15px;
+            border-radius: 0 6px 6px 0;
+            font-family: monospace;
+            word-break: break-all;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>LunarisX</h2>
+        <p>Paste your raw Lua script below to generate a secure loader.</p>
+        
+        <textarea id="sourceInput" placeholder="print('Hello World!')"></textarea>
+        <button onclick="processScript()">Obfuscate & Generate Loader</button>
+
+        <h3>Your Execution Loader</h3>
+        <div id="outputLoader" class="output-box"></div>
+    </div>
+
+    <script>
+        async function processScript() {
+            const code = document.getElementById('sourceInput').value;
+            const outputDiv = document.getElementById('outputLoader');
+            
+            if(!code.trim()) return alert("Please enter some script code.");
+
+            try {
+                const response = await fetch('/api/protect', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ scriptSource: code })
+                });
+                
+                const data = await response.json();
+                if(data.success) {
+                    outputDiv.innerText = data.loader;
+                    outputDiv.style.display = 'block';
+                }
+            } catch (err) {
+                alert("An error occurred during protection routing.");
+            }
+        }
+    </script>
+</body>
+</html>
